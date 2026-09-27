@@ -1,36 +1,25 @@
 const projects = [
   {
     number: "01",
-    name: "Norte Estudio",
-    category: "Identidad digital · Web",
+    name: "Boido Motors",
+    category: "Catálogo automotor · Next.js",
     description:
-      "Una presencia digital clara y expresiva para un estudio de arquitectura con mirada propia.",
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85",
-    alt: "Interior contemporáneo de líneas limpias y luz natural",
-    className: "project-image-norte",
+      "Catálogo digital de autos usados con fichas de vehículos y consultas directas para una concesionaria de Mar del Plata.",
+    image: "/projects/boido-motors-explorer.jpg",
+    alt: "Ford Explorer publicada en el catálogo de Boido Motors",
+    demo: "https://boido-motors.vercel.app/",
+    className: "project-image-boido",
   },
   {
     number: "02",
-    name: "Forma Finance",
-    category: "Producto digital · Dashboard",
+    name: "ForDevelopers",
+    category: "Captación de clientes · React + Vite",
     description:
-      "Una experiencia sencilla para entender mejor los números y tomar decisiones con confianza.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
-    alt: "Visualización de datos y gráficos en una pantalla",
-    className: "project-image-forma",
-  },
-  {
-    number: "03",
-    name: "Casa Botánica",
-    category: "E-commerce · Desarrollo web",
-    description:
-      "Una tienda digital cálida y rápida, pensada para descubrir cada producto sin apuro.",
-    image:
-      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=85",
-    alt: "Plantas de interior bajo luz natural",
-    className: "project-image-casa",
+      "Landing page para presentar servicios de desarrollo de software a medida y captar ideas y consultas de potenciales clientes.",
+    image: "/projects/fordevelopers.jpg",
+    alt: "Persona usando una computadora en la página principal de ForDevelopers",
+    demo: "/demos/fordevelopers/index.html",
+    className: "project-image-fordevelopers",
   },
 ];
 
@@ -95,9 +84,7 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow availability-badge"><span className="status-dot" /> Disponible para nuevos proyectos</p>
             <h1>Desarrollador de código que transforma <span className="hero-orange">ideas innovadoras</span> en <span>soluciones reales y prácticas.</span></h1>
-            <p className="hero-intro">
-              Diseño y desarrollo digital para marcas que quieren hacer las cosas de otra manera.
-            </p>
+            <p className="hero-intro">Diseño y desarrollo digital para marcas que quieren hacer las cosas de otra manera.</p>
             <div className="hero-actions">
               <a className="button button-blue" href="#proyectos">Explorar proyectos <Arrow /></a>
               <a className="text-link" href="#sobre-mi">Conóceme <span aria-hidden="true">↓</span></a>
@@ -109,9 +96,6 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual">
-            <a className="whatsapp-cta" href="https://wa.me/5492233035184" target="_blank" rel="noreferrer" aria-label="Escríbeme por WhatsApp">
-              <img src="/botonwpp.png" alt="" />
-            </a>
             <div className="portrait-frame">
               <img
                 className="portrait"
@@ -123,13 +107,21 @@ export default function Home() {
             <div className="orbit orbit-two" />
           </div>
         </div>
-        <div className="hero-bottom"><span>Desliza para explorar</span><span className="scroll-line" /></div>
+        <div className="hero-bottom">
+          <a className="cv-download" href="/cv.pdf" download="Valentino-Ortolani-Lopez-CV.pdf" aria-label="Descarga mi CV en PDF">Descarga mi CV</a>
+          <a className="github-link" href="https://github.com/valenortolani2-AFK" target="_blank" rel="noreferrer" aria-label="Abrir perfil de GitHub">GitHub</a>
+        </div>
       </section>
+
+      <a className="whatsapp-cta" href="https://wa.me/5492233035184" target="_blank" rel="noreferrer" aria-label="Escríbeme por WhatsApp">
+        <span className="whatsapp-square" aria-hidden="true" />
+        <img src="/botonwpp-transparente.png" alt="" />
+      </a>
 
       <section className="about section-pad" id="sobre-mi">
         <div className="section-heading">
           <div className="about-heading-top">
-            <p className="eyebrow eyebrow-dark">01 / UN POCO SOBRE MÍ</p>
+            <p className="eyebrow eyebrow-dark about-label">SOBRE MI</p>
             <span className="about-triangle" aria-hidden="true" />
           </div>
           <h2>Full Stack Developer <span>| Java &amp; Spring Boot</span></h2>
@@ -165,18 +157,17 @@ export default function Home() {
       </section>
 
       <section className="projects section-pad" id="proyectos">
-        <div className="section-topline"><p className="eyebrow eyebrow-dark">02 / SELECCIÓN DE TRABAJO</p><span>2023 — 2026</span></div>
-        <div className="projects-heading"><h2>Proyectos<br /><span>con propósito.</span></h2><p>Un vistazo a ideas que pasaron de la conversación a algo real.</p></div>
+        <div className="projects-heading"><h2>Proyectos<br /><span>con propósito.</span></h2><p>Dos proyectos publicados en GitHub, desde un catálogo automotor hasta una landing de servicios digitales.</p></div>
         <div className="project-grid">
           {projects.map((project) => (
             <article className="project-card" key={project.number}>
-              <a className={`project-visual ${project.className}`} href="#contacto" aria-label={`Consultar por ${project.name}`}>
+              <a className={`project-visual ${project.className}`} href={project.demo} target="_blank" rel="noreferrer" aria-label={`Ver demo de ${project.name}`}>
                 <img src={project.image} alt={project.alt} loading="lazy" />
                 <span className="project-open"><Arrow /></span>
-                <span className="project-count">{project.number} / 03</span>
+                <span className="project-count">{project.number} / {String(projects.length).padStart(2, "0")}</span>
               </a>
               <div className="project-details">
-                <div><p className="project-category">{project.category}</p><h3>{project.name}</h3></div>
+                <div><p className="project-category">{project.category}</p><h3>{project.name}</h3><a className="project-demo-link" href={project.demo} target="_blank" rel="noreferrer">Ver demo <Arrow /></a></div>
                 <p className="project-description">{project.description}</p>
               </div>
             </article>
@@ -206,12 +197,23 @@ export default function Home() {
         <div className="contact-topline"><p className="eyebrow eyebrow-dark">04 / EL PRÓXIMO PASO</p><span>Siempre abierto a buenas ideas</span></div>
         <div className="contact-content">
           <div><p className="contact-kicker">¿Tienes un proyecto en mente?</p><h2>Hagamos algo<br /><span>que importe.</span></h2></div>
-          <div className="contact-action"><p>Cuéntame qué estás imaginando. Me encantará ayudarte a convertirlo en realidad.</p><a className="button button-dark" href="mailto:valentino@example.com">Escríbeme un correo <Arrow /></a></div>
+          <div className="contact-action"><p>Cuéntame qué estás imaginando. Me encantará ayudarte a convertirlo en realidad.</p><a className="button button-dark" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=valenortolani2%40gmail.com" target="_blank" rel="noreferrer">Escríbeme un correo <Arrow /></a></div>
         </div>
         <div className="contact-bottom"><a href="#inicio" className="back-top">Volver arriba ↑</a><span>Buenos Aires · Disponible en remoto</span></div>
       </section>
 
-      <footer className="site-footer"><a className="footer-brand" href="#inicio">Valentino Ortolani Lopez<span>© 2026</span></a><span>Diseñado con curiosidad. Desarrollado con cuidado.</span><a href="#inicio">Volver al inicio ↑</a></footer>
+      <footer className="site-footer">
+        <div className="footer-main">
+          <a className="footer-brand" href="#inicio">Valentino Ortolani Lopez<span>© 2026</span></a>
+          <p className="footer-tagline">Diseñado con curiosidad. Desarrollado con cuidado.</p>
+        </div>
+        <div className="footer-contact">
+          <a className="footer-contact-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=valenortolani2%40gmail.com" target="_blank" rel="noreferrer">Escribime <Arrow /></a>
+          <a className="footer-contact-link" href="tel:+5492233035184">223 303-5184</a>
+          <a className="footer-contact-link" href="https://www.instagram.com/valenortolani" target="_blank" rel="noreferrer">@valenortolani</a>
+        </div>
+        <a href="#inicio" className="footer-back-top">Volver al inicio ↑</a>
+      </footer>
     </main>
   );
 }

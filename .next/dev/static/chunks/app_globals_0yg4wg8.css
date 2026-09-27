@@ -310,14 +310,14 @@ h1, h2, h3, p {
 }
 
 .whatsapp-cta {
-  z-index: 2;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 50;
   width: 64px;
   height: 64px;
   transition: filter .2s, transform .2s;
   display: block;
-  position: absolute;
-  top: 88px;
-  right: calc(-18% + -1 * max(0px, 50vw - 757px));
+  position: fixed;
 }
 
 .whatsapp-cta:hover {
@@ -325,11 +325,24 @@ h1, h2, h3, p {
   transform: translateY(-2px);
 }
 
+.whatsapp-square {
+  z-index: 0;
+  background: #ff35c5;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .whatsapp-cta img {
+  z-index: 1;
   object-fit: contain;
   width: 100%;
   height: 100%;
   display: block;
+  position: relative;
 }
 
 .portrait-frame {
@@ -372,23 +385,55 @@ h1, h2, h3, p {
 
 .hero-bottom {
   z-index: 2;
-  color: #8895b0;
-  width: min(1280px, 100%);
-  font-family: var(--mono);
-  text-transform: uppercase;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  width: min(1280px, 100%);
   margin: 30px auto 0;
-  font-size: 9px;
   display: flex;
   position: relative;
 }
 
-.scroll-line {
-  background: #62708c;
-  width: 48px;
-  height: 1px;
-  display: inline-block;
+.cv-download {
+  background: var(--blue);
+  min-width: 64px;
+  height: 64px;
+  color: var(--white);
+  font-family: "Space Grotesk", var(--sans);
+  white-space: nowrap;
+  border: 1px solid #ffffff8c;
+  place-items: center;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 800;
+  transition: background .2s, transform .2s;
+  display: grid;
+}
+
+.cv-download:hover {
+  background: #3158df;
+  transform: translateY(-2px);
+}
+
+.github-link {
+  min-width: 64px;
+  height: 64px;
+  color: var(--white);
+  font-family: "Space Grotesk", var(--sans);
+  white-space: nowrap;
+  background: #171717;
+  border: 1px solid #ffffff8c;
+  place-items: center;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 800;
+  transition: background .2s, transform .2s;
+  display: grid;
+}
+
+.github-link:hover {
+  background: #292929;
+  transform: translateY(-2px);
 }
 
 .ticker {
@@ -453,6 +498,14 @@ h1, h2, h3, p {
   justify-content: space-between;
   align-items: center;
   display: flex;
+}
+
+.about-label {
+  color: var(--night);
+  font-family: "Space Grotesk", var(--sans);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .about-triangle {
@@ -667,20 +720,12 @@ h1, h2, h3, p {
   display: grid;
 }
 
-.project-card:first-child {
-  grid-column: 1 / -1;
-}
-
 .project-visual {
+  aspect-ratio: 1.35;
   background: #cbd6ef;
-  height: 270px;
   display: block;
   position: relative;
   overflow: hidden;
-}
-
-.project-card:first-child .project-visual {
-  height: 405px;
 }
 
 .project-visual img {
@@ -695,11 +740,11 @@ h1, h2, h3, p {
   transform: scale(1.035);
 }
 
-.project-image-norte img {
-  object-position: center 55%;
+.project-image-boido img {
+  object-position: center 58%;
 }
 
-.project-image-forma img, .project-image-casa img {
+.project-image-fordevelopers img {
   object-position: center;
 }
 
@@ -746,6 +791,20 @@ h1, h2, h3, p {
   margin: 0;
   font-size: 19px;
   font-weight: 700;
+}
+
+.project-demo-link {
+  color: var(--blue);
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.project-demo-link span {
+  font-size: 15px;
 }
 
 .project-description {
@@ -919,12 +978,19 @@ h1, h2, h3, p {
 .site-footer {
   color: #aab5ce;
   background: #0b1326;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   min-height: 72px;
-  padding: 15px 9%;
+  padding: 20px 9%;
   font-size: 9px;
+  display: flex;
+}
+
+.footer-main {
+  flex-direction: column;
+  gap: 8px;
   display: flex;
 }
 
@@ -941,8 +1007,33 @@ h1, h2, h3, p {
   font-weight: 400;
 }
 
-.site-footer > a:last-child {
+.footer-tagline {
+  color: #7f8ba4;
+  margin: 0;
+  font-size: 9px;
+}
+
+.footer-contact {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  display: flex;
+}
+
+.footer-contact-link {
   color: #c9d6ff;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  display: inline-flex;
+}
+
+.footer-contact-link span {
+  font-size: 13px;
+}
+
+.footer-contact-link:hover, .footer-back-top {
+  color: var(--white);
 }
 
 @media (max-width: 900px) {
@@ -966,11 +1057,6 @@ h1, h2, h3, p {
 
   .hero-visual {
     height: 440px;
-  }
-
-  .whatsapp-cta {
-    top: 78px;
-    right: -15%;
   }
 
   .portrait-frame {
@@ -1068,11 +1154,6 @@ h1, h2, h3, p {
     margin-top: 5px;
   }
 
-  .whatsapp-cta {
-    top: 82px;
-    right: -8%;
-  }
-
   .portrait-frame {
     width: 84%;
     height: 370px;
@@ -1125,6 +1206,10 @@ h1, h2, h3, p {
     gap: 36px;
   }
 
+  .about-label {
+    font-size: 36px;
+  }
+
   .about-copy p {
     font-size: 15px;
   }
@@ -1158,11 +1243,8 @@ h1, h2, h3, p {
     gap: 36px;
   }
 
-  .project-card:first-child {
-    grid-column: auto;
-  }
-
-  .project-visual, .project-card:first-child .project-visual {
+  .project-visual {
+    aspect-ratio: auto;
     height: 250px;
   }
 
@@ -1220,6 +1302,31 @@ h1, h2, h3, p {
     align-items: flex-start;
     gap: 9px;
     padding: 18px 7%;
+  }
+
+  .footer-contact {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-bottom {
+    gap: 8px;
+  }
+
+  .whatsapp-cta {
+    width: 56px;
+    height: 56px;
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .cv-download, .github-link {
+    min-width: 56px;
+    height: 56px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 11px;
   }
 }
 
